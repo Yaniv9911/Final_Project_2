@@ -1,0 +1,238 @@
+[
+  {
+    "id": "q01",
+    "type": "semantic",
+    "query": "my package never arrived",
+    "relevant_ids": [
+      "r001",
+      "r018",
+      "r024"
+    ]
+  },
+  {
+    "id": "q02",
+    "type": "semantic",
+    "query": "poor fabric quality",
+    "relevant_ids": [
+      "r002"
+    ]
+  },
+  {
+    "id": "q03",
+    "type": "semantic",
+    "query": "I could not get hold of a human being",
+    "relevant_ids": [
+      "r003",
+      "r006"
+    ]
+  },
+  {
+    "id": "q04",
+    "type": "semantic",
+    "query": "the colour was nothing like the listing",
+    "relevant_ids": [
+      "r004"
+    ]
+  },
+  {
+    "id": "q05",
+    "type": "semantic",
+    "query": "it was smashed in transit",
+    "relevant_ids": [
+      "r005"
+    ]
+  },
+  {
+    "id": "q06",
+    "type": "semantic",
+    "query": "it failed after a few days",
+    "relevant_ids": [
+      "r007"
+    ]
+  },
+  {
+    "id": "q07",
+    "type": "semantic",
+    "query": "the manual is useless",
+    "relevant_ids": [
+      "r008"
+    ]
+  },
+  {
+    "id": "q08",
+    "type": "semantic",
+    "query": "duplicate payment on my account",
+    "relevant_ids": [
+      "r009"
+    ]
+  },
+  {
+    "id": "q09",
+    "type": "semantic",
+    "query": "faulty zipper",
+    "relevant_ids": [
+      "r010"
+    ]
+  },
+  {
+    "id": "q10",
+    "type": "semantic",
+    "query": "the fit was much smaller than expected",
+    "relevant_ids": [
+      "r038"
+    ]
+  },
+  {
+    "id": "q11",
+    "type": "lexical",
+    "query": "order #48213",
+    "relevant_ids": [
+      "r011",
+      "r024"
+    ]
+  },
+  {
+    "id": "q12",
+    "type": "lexical",
+    "query": "$12.99 restocking fee",
+    "relevant_ids": [
+      "r012"
+    ]
+  },
+  {
+    "id": "q13",
+    "type": "lexical",
+    "query": "SKU AX-7710",
+    "relevant_ids": [
+      "r014"
+    ]
+  },
+  {
+    "id": "q14",
+    "type": "lexical",
+    "query": "SAVE20",
+    "relevant_ids": [
+      "r017"
+    ]
+  },
+  {
+    "id": "q15",
+    "type": "lexical",
+    "query": "reference 9921-B",
+    "relevant_ids": [
+      "r018"
+    ]
+  },
+  {
+    "id": "q16",
+    "type": "lexical",
+    "query": "refund took 45 days",
+    "relevant_ids": [
+      "r015"
+    ]
+  },
+  {
+    "id": "q17",
+    "type": "lexical",
+    "query": "battery lasted 30 hours as advertised",
+    "relevant_ids": [
+      "r019"
+    ]
+  },
+  {
+    "id": "q18",
+    "type": "lexical",
+    "query": "battery only lasted 3 hours",
+    "relevant_ids": [
+      "r016"
+    ]
+  },
+  {
+    "id": "q19",
+    "type": "hybrid",
+    "query": "ProBlend 900 leaking",
+    "relevant_ids": [
+      "r023"
+    ]
+  },
+  {
+    "id": "q20",
+    "type": "hybrid",
+    "query": "ProBlend 900 motor failure",
+    "relevant_ids": [
+      "r013"
+    ]
+  },
+  {
+    "id": "q21",
+    "type": "hybrid",
+    "query": "where is my order #48213",
+    "relevant_ids": [
+      "r024",
+      "r011"
+    ]
+  },
+  {
+    "id": "q22",
+    "type": "hybrid",
+    "query": "was the $12.99 charge reasonable",
+    "relevant_ids": [
+      "r022",
+      "r012"
+    ]
+  },
+  {
+    "id": "q23",
+    "type": "hybrid",
+    "query": "did anyone get their refund on time",
+    "relevant_ids": [
+      "r021"
+    ]
+  },
+  {
+    "id": "q24",
+    "type": "hybrid",
+    "query": "packaging arrived in good condition",
+    "relevant_ids": [
+      "r020",
+      "r025",
+      "r062"
+    ]
+  },
+  {
+    "id": "q25",
+    "type": "unanswerable",
+    "query": "do you offer gift wrapping",
+    "relevant_ids": []
+  },
+  {
+    "id": "q26",
+    "type": "unanswerable",
+    "query": "what is the warranty length",
+    "relevant_ids": []
+  },
+  {
+    "id": "q27",
+    "type": "unanswerable",
+    "query": "can I pay in monthly installments",
+    "relevant_ids": []
+  },
+  {
+    "id": "q28",
+    "type": "unanswerable",
+    "query": "do you ship to Australia",
+    "relevant_ids": []
+  },
+  {
+    "id": "q29",
+    "type": "unanswerable",
+    "query": "is there a physical store in Tel Aviv",
+    "relevant_ids": []
+  },
+  {
+    "id": "q30",
+    "type": "unanswerable",
+    "query": "what are your opening hours",
+    "relevant_ids": []
+  }
+]

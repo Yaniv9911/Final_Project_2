@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Northwind Goods — תדריך פרויקט</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#faf8f5; --card:#fff; --ink:#191713; --ink2:#5d574e; --mut:#948d81;
+  --line:#e5dfd6; --line2:#f0ebe4;
+  --brand:#1d4a45; --brand-bg:#e8f1ef; --brand-ln:#c7dedb;
+  --rust:#a83f2b; --rust-bg:#fbeeeb; --rust-ln:#f0d5cf;
+  --amber:#9a6b18; --amber-bg:#fbf3e2; --amber-ln:#eddfc1;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:'Heebo',-apple-system,'Segoe UI',Arial,sans-serif;line-height:1.75;font-size:16px}
+.wrap{max-width:880px;margin:0 auto;padding:0 24px 90px}
+
+/* ---------- hero ---------- */
+.hero{background:var(--brand);color:#eaf2f0;margin:0 -24px 0;padding:56px 44px 48px;
+  position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;left:-90px;top:-90px;width:320px;height:320px;
+  border-radius:50%;background:rgba(255,255,255,.045)}
+.logo{display:flex;align-items:center;gap:11px;margin-bottom:34px;position:relative}
+.logo .mark{width:30px;height:30px;border-radius:7px;background:#eaf2f0;color:var(--brand);
+  display:grid;place-items:center;font-weight:900;font-size:16px;flex:none}
+.logo .nm{font-weight:700;font-size:16px;letter-spacing:.3px}
+.logo .nm span{font-weight:300;opacity:.6}
+.hero .eyebrow{font-size:12px;letter-spacing:2px;text-transform:uppercase;
+  color:#8fb5ae;font-weight:600;margin-bottom:14px;position:relative}
+.hero h1{font-size:42px;font-weight:800;margin:0 0 16px;letter-spacing:-1px;
+  line-height:1.2;position:relative}
+.hero p{margin:0;font-size:18.5px;font-weight:300;color:#c4dbd6;max-width:58ch;
+  position:relative;line-height:1.65}
+.hero .meta{display:flex;gap:34px;margin-top:34px;flex-wrap:wrap;position:relative}
+.hero .meta div{font-size:13px;color:#8fb5ae}
+.hero .meta b{display:block;font-size:21px;color:#fff;font-weight:700;letter-spacing:-.3px}
+
+/* ---------- sections ---------- */
+section{margin-top:58px}
+.tag{font-size:11.5px;letter-spacing:1.8px;text-transform:uppercase;color:var(--mut);
+  font-weight:700;margin-bottom:9px}
+h2{font-size:28px;font-weight:800;margin:0 0 10px;letter-spacing:-.6px;line-height:1.3}
+.dek{color:var(--ink2);font-size:16.5px;margin:0 0 24px;max-width:68ch;font-weight:300}
+h3{font-size:19px;font-weight:600;margin:30px 0 8px}
+p{margin:0 0 15px;max-width:70ch}
+
+/* ---------- email ---------- */
+.mail{background:var(--card);border:1px solid var(--line);border-radius:14px;
+  overflow:hidden;margin:26px 0;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.mail .head{padding:16px 22px;border-bottom:1px solid var(--line2);background:#fdfcfa}
+.mail .row{display:flex;gap:9px;font-size:13.5px;color:var(--ink2);margin-bottom:3px}
+.mail .row:last-child{margin:0}
+.mail .row b{color:var(--mut);font-weight:500;min-width:42px}
+.mail .subject{font-size:16.5px;font-weight:600;color:var(--ink);margin-bottom:9px}
+.mail .body{padding:22px 24px;font-size:15.5px;line-height:1.8}
+.mail .body p{margin:0 0 14px;max-width:none}
+.mail .body p:last-child{margin:0}
+.mail .sig{color:var(--mut);font-size:14px;border-top:1px solid var(--line2);
+  margin-top:18px;padding-top:14px}
+
+/* ---------- incident ---------- */
+.incident{background:var(--rust-bg);border:1px solid var(--rust-ln);border-radius:14px;
+  padding:26px 28px;margin:24px 0}
+.incident .ihead{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.incident .dot{width:9px;height:9px;border-radius:50%;background:var(--rust);flex:none}
+.incident h4{margin:0;font-size:12px;letter-spacing:1.6px;text-transform:uppercase;
+  color:var(--rust);font-weight:700}
+.incident .title{font-size:20px;font-weight:700;margin:0 0 12px;color:#6e2a1c}
+.incident p{color:#7a3527;font-size:15.5px;margin-bottom:12px}
+.incident p:last-child{margin:0}
+
+.chat{background:#fff;border:1px solid var(--rust-ln);border-radius:12px;
+  padding:18px;margin:18px 0}
+.bub{max-width:82%;padding:11px 15px;border-radius:14px;font-size:14.5px;
+  margin-bottom:10px;line-height:1.6}
+.bub.u{background:#eceae6;color:#2b2822;margin-right:auto;border-bottom-right-radius:4px}
+.bub.b{background:var(--brand);color:#eaf2f0;margin-left:auto;border-bottom-left-radius:4px}
+.bub:last-child{margin-bottom:0}
+.chat .who{font-size:11px;color:var(--mut);margin-bottom:4px;font-weight:500}
+.strike{background:rgba(255,255,255,.16);padding:0 3px;border-radius:3px}
+.chatnote{font-size:13px;color:var(--rust);margin-top:14px;padding-top:12px;
+  border-top:1px dashed var(--rust-ln);font-weight:500}
+
+/* ---------- requirement cards ---------- */
+.reqs{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:22px 0}
+.req{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:20px 22px}
+.req .n{font-size:11.5px;font-weight:700;color:var(--brand);letter-spacing:1.4px;
+  margin-bottom:7px;text-transform:uppercase}
+.req h4{margin:0 0 7px;font-size:17px;font-weight:600;letter-spacing:-.2px}
+.req p{margin:0;font-size:14.5px;color:var(--ink2);max-width:none;line-height:1.65}
+@media(max-width:680px){.reqs{grid-template-columns:1fr}}
+
+/* ---------- timeline ---------- */
+.tl{margin:24px 0;position:relative;padding-right:34px}
+.tl::before{content:"";position:absolute;right:11px;top:14px;bottom:14px;width:2px;
+  background:var(--line)}
+.wk{position:relative;margin-bottom:26px}
+.wk:last-child{margin-bottom:0}
+.wk::before{content:"";position:absolute;right:-28px;top:9px;width:12px;height:12px;
+  border-radius:50%;background:var(--brand);border:3px solid var(--paper)}
+.wk .lbl{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--mut);font-weight:700;margin-bottom:3px}
+.wk h4{margin:0 0 6px;font-size:19px;font-weight:700;letter-spacing:-.3px}
+.wk p{margin:0;font-size:15px;color:var(--ink2);max-width:64ch}
+.wk .out{display:inline-block;font-family:'SF Mono',Menlo,Consolas,monospace;
+  font-size:12.5px;background:#efece7;color:#5d574e;padding:2px 8px;border-radius:5px;
+  margin-top:9px;direction:ltr}
+.wk.hi h4{color:var(--brand)}
+.wk.hi::before{background:var(--rust);width:14px;height:14px;right:-29px}
+.wk .flag{display:inline-block;background:var(--rust-bg);color:var(--rust);
+  border:1px solid var(--rust-ln);font-size:11.5px;font-weight:600;padding:2px 9px;
+  border-radius:20px;margin-right:8px;vertical-align:middle}
+
+/* ---------- success ---------- */
+.score{background:#191713;color:#f0ece6;border-radius:16px;padding:30px 34px;margin:24px 0}
+.score .lbl{font-size:11.5px;letter-spacing:1.8px;text-transform:uppercase;
+  color:#9b9287;font-weight:700;margin-bottom:16px}
+.score .big{font-size:44px;font-weight:800;letter-spacing:-1.5px;line-height:1;
+  margin-bottom:6px;color:#fff}
+.score .cap{font-size:15px;color:#b3aba0;margin-bottom:22px}
+.score pre{background:#232019;border-radius:10px;padding:15px 18px;direction:ltr;
+  text-align:left;font-size:12.5px;line-height:1.7;overflow-x:auto;margin:0;
+  font-family:'SF Mono',Menlo,Consolas,monospace;color:#cfc7bb}
+.score pre .g{color:#7fb89f}
+.score pre .r{color:#d68b7a}
+
+.quote{border-right:4px solid var(--brand);padding:4px 22px;margin:30px 0;
+  font-size:21px;font-weight:300;color:var(--ink);line-height:1.6;letter-spacing:-.2px}
+.quote cite{display:block;font-size:14px;color:var(--mut);font-style:normal;
+  font-weight:500;margin-top:10px}
+
+.note{background:var(--amber-bg);border:1px solid var(--amber-ln);border-radius:12px;
+  padding:17px 20px;font-size:14.5px;color:#6f4d11;margin:22px 0}
+.note b{color:var(--amber)}
+.note p{margin:0;max-width:none}
+
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);
+  border-radius:12px;overflow:hidden;margin:18px 0;font-size:14.5px}
+th{text-align:right;background:#f4f1ec;font-size:12.5px;font-weight:600;color:var(--ink2);
+  padding:11px 16px;border-bottom:1px solid var(--line)}
+td{padding:12px 16px;border-bottom:1px solid var(--line2);vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.f{font-weight:500;white-space:nowrap}
+
+footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);
+  font-size:13px;color:var(--mut);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero">
+  <div class="logo">
+    <div class="mark">N</div>
+    <div class="nm">NORTHWIND <span>GOODS</span></div>
+  </div>
+  <div class="eyebrow">תדריך פרויקט · מחלקת נתונים ו-AI</div>
+  <h1>יום ראשון בתפקיד</h1>
+  <p>התקבלת לתפקיד מפתח AI ב-Northwind Goods. יש לך חודש, קורפוס ביקורות מבולגן, ומנהלת שכבר ראתה את הפרויקט הזה נכשל פעם אחת.</p>
+  <div class="meta">
+    <div><b>41,000</b>ביקורות לקוחות</div>
+    <div><b>9</b>נציגי שירות</div>
+    <div><b>600</b>פניות בשבוע</div>
+    <div><b>11</b>ימים שהבוט הקודם שרד</div>
+  </div>
+</div>
+
+<!-- ============ email ============ -->
+<section>
+  <div class="tag">ההודעה שמחכה לך בתיבה</div>
+  <h2>מדנה רייס, סמנכ״לית תפעול לקוחות</h2>
+
+  <div class="mail">
+    <div class="head">
+      <div class="subject">ברוך הבא — ומשהו שכדאי שתדע לפני שתתחיל</div>
+      <div class="row"><b>מאת</b> Dana Reyes &lt;d.reyes@northwindgoods.com&gt;</div>
+      <div class="row"><b>אל</b> אתה</div>
+      <div class="row"><b>עותק</b> Legal</div>
+    </div>
+    <div class="body">
+      <p>ברוך הבא לצוות.</p>
+      <p>הבעיה שלנו פשוטה לתאר וקשה לפתור. יש לנו 41 אלף ביקורות לקוחות שנצברו בארבע שנים — באתר שלנו ובשלושה מרקטפלייסים. אף אחד לא קורא אותן. כשמנהל מוצר שואל "מה הבעיה הכי גדולה עם ה-ProBlend 900", התשובה מגיעה אחרי שלושה ימים ומבוססת על תחושת בטן של מישהו מהשירות.</p>
+      <p>אני רוצה שנוכל לשאול את הביקורות שאלות בשפה חופשית ולקבל תשובה מיד.</p>
+      <p>אבל לפני שאתה מתלהב — <b>כבר ניסינו את זה בפברואר, וזה נגמר רע.</b> תקרא את הסיכום שצירפתי. אני לא מבקשת ממך להיות זהיר יותר, אני מבקשת ממך להיות מדיד יותר.</p>
+      <p>אל תראה לי דמו. תראה לי מספר.</p>
+      <div class="sig">דנה<br>Head of Customer Operations, Northwind Goods</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ incident ============ -->
+<section>
+  <div class="tag">הקובץ המצורף</div>
+  <h2>מה קרה בפעם הקודמת</h2>
+  <p class="dek">קבלן חיצוני בנה לנו צ׳אטבוט בשלושה שבועות. הדמו היה מצוין. הוא היה באוויר אחד-עשר ימים.</p>
+
+  <div class="incident">
+    <div class="ihead"><span class="dot"></span><h4>סיכום אירוע · 24 בפברואר 2026</h4></div>
+    <div class="title">"אריה" — הצ׳אטבוט שהמציא מדיניות החזרות</div>
+
+    <p>ב-19 בפברואר שאלה לקוחה את הבוט מה חלון ההחזרות שלנו. המידע הזה לא היה בקורפוס הביקורות — הביקורות מדברות על חוויות, לא על מדיניות. הבוט לא אמר שאין לו את המידע. הוא הרכיב תשובה שנשמעה סבירה מאוד.</p>
+
+    <div class="chat">
+      <div class="who">תמליל מהשיחה</div>
+      <div class="bub u">היי, כמה זמן יש לי להחזיר פריט?</div>
+      <div class="bub b">בהחלט! ב-Northwind Goods יש לך <span class="strike">90 יום</span> מיום קבלת ההזמנה להחזיר כל פריט במצב מקורי, ללא עלות. פשוט פנו לשירות הלקוחות והם ישמחו לסייע.</div>
+      <div class="bub u">מעולה, תודה!</div>
+      <div class="chatnote">חלון ההחזרות האמיתי שלנו הוא 30 יום. המספר 90 לא הופיע בשום מסמך שהוא קיבל.</div>
+    </div>
+
+    <p>הלקוחה צילמה מסך ופרסמה. תוך שבוע קיבלנו כ-400 בקשות החזר שהפנו לצילום המסך הזה. כובדו כמעט כולן — כ-34 אלף דולר.</p>
+    <p><b>מה שנשבר לא היה המודל.</b> הקבלן מעולם לא מדד אם החיפוש מוצא את המסמך הנכון. כשלא נמצא כלום, המערכת החזירה את שלושת המסמכים הכי "קרובים" ממילא — והמודל, שקיבל שלוש ביקורות אקראיות על משלוחים, עשה בדיוק את מה שהוא מאומן לעשות: כתב תשובה משכנעת.</p>
+  </div>
+
+  <div class="note">
+    <p><b>המסקנה של Legal:</b> כל תשובה שהמערכת מייצרת חייבת להצביע על ביקורת ספציפית וקיימת. תשובה בלי מקור לא עולה לאוויר.</p>
+  </div>
+</section>
+
+<!-- ============ mission ============ -->
+<section>
+  <div class="tag">המשימה</div>
+  <h2>ארבע דרישות מהעסק</h2>
+  <p class="dek">אלה לא דרישות טכניות. הן הגיעו מדנה ומ-Legal, והן מכתיבות כמעט כל החלטה הנדסית שתקבל.</p>
+
+  <div class="reqs">
+    <div class="req">
+      <div class="n">דרישה 01</div>
+      <h4>כל תשובה מצטטת מקור אמיתי</h4>
+      <p>לא "לפי הביקורות" — מזהה ביקורת ספציפי שאפשר לפתוח ולקרוא. ואם המערכת מצטטת מזהה שלא הועבר לה בפועל, זה חייב להיתפס אוטומטית.</p>
+    </div>
+    <div class="req">
+      <div class="n">דרישה 02</div>
+      <h4>"אין לי מידע" היא תשובה תקינה</h4>
+      <p>זו הדרישה שנולדה מהאירוע. יש שאלות שהקורפוס פשוט לא עונה עליהן, והמערכת חייבת לזהות אותן ולעצור — לא לנחש בביטחון.</p>
+    </div>
+    <div class="req">
+      <div class="n">דרישה 03</div>
+      <h4>רץ על לפטופ</h4>
+      <p>אין תקציב תשתית. האינדקס והאמבדינגים רצים מקומית, ואין להעלות את הקורפוס ל-vector DB מנוהל של ספק חיצוני. קריאות LLM נקודתיות תחת הסכם הספק הקיים מותרות — בעלות שקרובה לאפס.</p>
+    </div>
+    <div class="req">
+      <div class="n">דרישה 04</div>
+      <h4>מדיד, לא מרשים</h4>
+      <p>דנה תשאל "איך אתה יודע שזה יותר טוב מאתמול". צריכה להיות לך תשובה מספרית. זה בדיוק מה שלא היה לקבלן הקודם.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ timeline ============ -->
+<section>
+  <div class="tag">התוכנית</div>
+  <h2>ארבעה שבועות</h2>
+  <p class="dek">כל שבוע מייצר קובץ שהשבוע הבא צורך. אל תדלג — במיוחד לא על השלישי.</p>
+
+  <div class="tl">
+    <div class="wk">
+      <div class="lbl">שבוע 1</div>
+      <h4>הנתונים הם ביצה</h4>
+      <p>41 אלף ביקורות שנאספו מארבעה מקורות שונים בארבע שנים. אותה ביקורת מופיעה פעמיים כי הסנכרון מהמרקטפלייס רץ פעמיים. נציגים כתבו "CS", "support" ו-"customer service" לסירוגין. לפני שה-AI רואה משהו — תנקה.</p>
+      <p style="margin-top:8px">מהנדסת הנתונים כבר חילצה לך <b>מדגם פיילוט של 70 ביקורות</b> שמרכז את כל סוגי הבלגן שיש בקורפוס המלא. עליו תבנה ותמדוד. צינור שלא שורד 70 ביקורות לא יקבל גישה ל-41 אלף.</p>
+      <span class="out">→ data/clean_reviews.json</span>
+    </div>
+
+    <div class="wk">
+      <div class="lbl">שבוע 2</div>
+      <h4>התפעול רוצה טבלה, לא פסקאות</h4>
+      <p>דנה לא רוצה לקרוא סיכומים יפים. היא רוצה לסנן לפי קטגוריה, לראות כמה מהפניות מבקשות החזר, ולמיין לפי חומרה. המשמעות: להכריח את המודל להחזיר JSON תקין לפי סכמה — ולאמת בקוד שהוא באמת עשה את זה.</p>
+      <span class="out">→ data/tickets.json</span>
+    </div>
+
+    <div class="wk hi">
+      <div class="lbl">שבוע 3 <span class="flag">כאן הקבלן נכשל</span></div>
+      <h4>האם החיפוש בכלל עובד?</h4>
+      <p>לפני שבונים צ׳אט אחד, עונים על שאלה אחת: כשמישהו שואל שאלה, האם הביקורת הנכונה בכלל נמצאת? תבנה שלוש שיטות חיפוש, תריץ אותן מול 30 שאלות שהתשובה שלהן ידועה מראש, ותקבל מספר. זה השבוע שהופך את הפרויקט מניחוש להנדסה.</p>
+      <span class="out">→ runs/*.json</span>
+    </div>
+
+    <div class="wk">
+      <div class="lbl">שבוע 4</div>
+      <h4>עכשיו הצ׳אט</h4>
+      <p>ורק עכשיו. על גבי השיטה שניצחה במדידה, עם זיכרון לשאלות המשך, עם סירוב כשאין מידע, ועם בדיקה אוטומטית שכל ציטוט אמיתי. זה הבוט שלא יכבו אחרי אחד-עשר ימים.</p>
+      <span class="out">→ 4_conversational_rag.py</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ success ============ -->
+<section>
+  <div class="tag">ההגדרה</div>
+  <h2>איך נמדדת הצלחה</h2>
+  <p class="dek">לא בדמו. בפלט של <code>score.py</code> מול 30 שאלות עם תשובות ידועות.</p>
+
+  <div class="score">
+    <div class="lbl">קו הפתיחה — חיפוש מילים בלבד</div>
+    <div class="big">43.6%</div>
+    <div class="cap">זה מה שתקבל מ-BM25 פשוט, כשמסננים תוצאות בציון אפס (בלי הסינון — 40.3%). המשימה שלך היא להסביר למה זה כל כך נמוך, ולשפר.</div>
+<pre>  METHOD         FINAL   RECALL      MRR   ABSTAIN
+  ------------------------------------------------
+  lexical        43.6%    51.4%    48.6%     16.7%
+
+  BREAKDOWN BY QUERY TYPE  (recall@3)
+
+  METHOD          SEMANTIC     LEXICAL      HYBRID
+  ------------------------------------------------
+  lexical         <span class="r">   5.0%</span>     <span class="g">  93.8%</span>       72.2%</pre>
+  </div>
+
+  <p><b>תסתכל על שתי המשבצות האלה.</b> אותה שיטת חיפוש בדיוק: 93.8% על סוג אחד של שאלות, 5% על סוג אחר. זו לא תקלה ולא רעש — זה הממצא המרכזי של כל הפרויקט, והוא מסביר בדיוק למה הבוט של פברואר המציא מדיניות החזרות.</p>
+
+  <table>
+    <thead><tr><th style="width:30%">מה מודדים</th><th>מה זה אומר</th></tr></thead>
+    <tbody>
+      <tr><td class="f">Recall@k</td><td>מתוך הביקורות שבאמת עונות על השאלה, כמה הופיעו בתוצאות. אם המספר הזה נמוך — שום שיפור בניסוח לא יעזור לך.</td></tr>
+      <tr><td class="f">MRR</td><td>כמה גבוה הופיעה התשובה הנכונה. רגיש לדירוג, ולכן הוא זה שיעניש אותך כשתחזיר את הביקורת על סוללה שהחזיקה 3 שעות במקום זו שהחזיקה 30.</td></tr>
+      <tr><td class="f">Abstain</td><td>מתוך שש השאלות שאין להן תשובה בקורפוס, בכמה המערכת שתקה. זה המדד של אירוע פברואר.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <p><b>שים לב:</b> מערכת שתמיד מחזירה תוצאות תקבל אפס במדד האחרון. וזה נכון — בדיוק זו ההתנהגות שעלתה לנו 34 אלף דולר.</p>
+  </div>
+</section>
+
+<section>
+  <div class="quote">
+    "הקבלן הקודם בנה מערכת שנראתה מצוינת ואף אחד לא ידע כמה טוב היא עובדת. אני לא רוצה מערכת מרשימה יותר. אני רוצה מערכת שאני יודעת עליה מספר."
+    <cite>דנה רייס, בפגישת הפתיחה</cite>
+  </div>
+</section>
+
+<footer>
+  <span>Northwind Goods · תדריך פרויקט למשתתפים</span>
+  <span>Northwind Goods היא חברה בדיונית שנוצרה לצורך התרגיל</span>
+</footer>
+
+</div>
+</body>
+</html>
