@@ -1,0 +1,16 @@
+# This file DOCUMENTS the already-provisioned conda env ("rag_env"), it does
+# not provision it. Do not `pip install -r requirements.txt`. The environment
+# is created, activated, and fully installed already — see CLAUDE.md rule 9.
+# Versions below were read from the live env with `python -m pip list`.
+
+streamlit==1.60.0
+scikit-learn==1.9.0
+rank-bm25==0.2.2
+python-dotenv==1.2.2
+sentence-transformers==6.0.1
+google-genai==2.14.0
+pandas==3.0.5
+numpy==2.4.6
+
+# Transitive dependency of sentence-transformers, pinned here for reference only:
+torch==2.14.0
