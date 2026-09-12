@@ -53,7 +53,7 @@ def load_corpus():
 
 
 @st.cache_data
-def compute_all_results(k, lex_kwargs, sem_kwargs):
+def compute_all_results(k, lex_kwargs, sem_kwargs, identifier_override):
     """Run all three methods over every gold query at the given settings."""
     corpus = load_corpus()
     gold = load_gold()
@@ -63,7 +63,8 @@ def compute_all_results(k, lex_kwargs, sem_kwargs):
         lexical = rt.lexical_search(query, k=k, corpus=corpus, **lex_kwargs)
         semantic = rt.semantic_search(query, k=k, corpus=corpus, **sem_kwargs)
         hybrid = rt.hybrid_search(
-            query, k=k, corpus=corpus, lexical_kwargs=lex_kwargs, semantic_kwargs=sem_kwargs
+            query, k=k, corpus=corpus, lexical_kwargs=lex_kwargs, semantic_kwargs=sem_kwargs,
+            identifier_override=identifier_override,
         )
         results[q["id"]] = {"lexical": lexical, "semantic": semantic, "hybrid": hybrid}
     return results
@@ -119,16 +120,28 @@ def main():
 
     st.sidebar.subheader("Lexical (BM25)")
     use_stopwords = st.sidebar.checkbox("Remove stopwords", value=True)
+    use_stemming = st.sidebar.checkbox("Use light stemming", value=True)
     lex_min_score = st.sidebar.slider("Normalized score threshold", 0.0, 1.5, 0.30, 0.01)
     lex_min_coverage = st.sidebar.slider("Query-term coverage threshold", 0.0, 1.0, 0.50, 0.05)
 
     st.sidebar.subheader("Semantic (embeddings)")
-    sem_min_similarity = st.sidebar.slider("Cosine similarity threshold", 0.0, 1.0, 0.36, 0.01)
+    sem_min_similarity = st.sidebar.slider("Cosine similarity threshold", 0.0, 1.0, 0.30, 0.01)
 
-    lex_kwargs = {"use_stopwords": use_stopwords, "min_score": lex_min_score, "min_coverage": lex_min_coverage}
+    st.sidebar.subheader("Hybrid fusion")
+    identifier_override = st.sidebar.checkbox(
+        "Exact-identifier override", value=True,
+        help="Promotes a document to rank 1 when the query contains an identifier-shaped "
+             "token (order #, SKU, reference code) that appears in it exactly. Measured to "
+             "beat plain RRF fusion — see results/tuning_log.md.",
+    )
+
+    lex_kwargs = {
+        "use_stopwords": use_stopwords, "use_stemming": use_stemming,
+        "min_score": lex_min_score, "min_coverage": lex_min_coverage,
+    }
     sem_kwargs = {"min_similarity": sem_min_similarity}
 
-    results = compute_all_results(k, lex_kwargs, sem_kwargs)
+    results = compute_all_results(k, lex_kwargs, sem_kwargs, identifier_override)
     scores = {method: score_method(method, results, gold, k) for method in METHODS}
 
     st.subheader(f"Recall@{k} and MRR@{k} by method")

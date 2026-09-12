@@ -25,6 +25,26 @@ class TestTokenize(unittest.TestCase):
                           ["order", "48213", "still", "no", "sign"])
 
 
+class TestStem(unittest.TestCase):
+    def test_strips_common_inflections(self):
+        self.assertEqual(rt.stem("batteries"), "battery")
+        self.assertEqual(rt.stem("washes"), "wash")
+        self.assertEqual(rt.stem("leaking"), "leak")
+        self.assertEqual(rt.stem("hours"), "hour")
+
+    def test_never_touches_identifiers(self):
+        # Stemming a product code or price would be meaningless and risks
+        # merging distinct identifiers — must be a no-op whenever a digit
+        # is present.
+        self.assertEqual(rt.stem("ax-7710"), "ax-7710")
+        self.assertEqual(rt.stem("48213"), "48213")
+        self.assertEqual(rt.stem("9921-b"), "9921-b")
+
+    def test_leaves_short_words_alone(self):
+        self.assertEqual(rt.stem("the"), "the")
+        self.assertEqual(rt.stem("was"), "was")
+
+
 class TestRemoveStopwords(unittest.TestCase):
     def test_removes_common_stopwords(self):
         tokens = rt.tokenize("my package never arrived")
