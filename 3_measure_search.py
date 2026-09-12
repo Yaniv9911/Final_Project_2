@@ -14,6 +14,7 @@ from pathlib import Path
 import pandas as pd
 import streamlit as st
 
+import config
 import retrieval as rt
 
 EVAL_PATH = Path("data/eval_queries.json")
@@ -116,20 +117,25 @@ def main():
     st.caption(f"{len(gold)} gold queries loaded from data/eval_queries.json")
 
     st.sidebar.header("Settings")
-    k = st.sidebar.slider("k", min_value=1, max_value=10, value=3)
+    st.sidebar.caption("Defaults below come from config.py — the same winning "
+                        "configuration 4_conversational_rag.py ships with.")
+    k = st.sidebar.slider("k", min_value=1, max_value=10, value=config.TOP_K)
 
     st.sidebar.subheader("Lexical (BM25)")
-    use_stopwords = st.sidebar.checkbox("Remove stopwords", value=True)
-    use_stemming = st.sidebar.checkbox("Use light stemming", value=True)
-    lex_min_score = st.sidebar.slider("Normalized score threshold", 0.0, 1.5, 0.30, 0.01)
-    lex_min_coverage = st.sidebar.slider("Query-term coverage threshold", 0.0, 1.0, 0.50, 0.05)
+    use_stopwords = st.sidebar.checkbox("Remove stopwords", value=config.LEXICAL_KWARGS["use_stopwords"])
+    use_stemming = st.sidebar.checkbox("Use light stemming", value=config.LEXICAL_KWARGS["use_stemming"])
+    lex_min_score = st.sidebar.slider(
+        "Normalized score threshold", 0.0, 1.5, config.LEXICAL_KWARGS["min_score"], 0.01)
+    lex_min_coverage = st.sidebar.slider(
+        "Query-term coverage threshold", 0.0, 1.0, config.LEXICAL_KWARGS["min_coverage"], 0.05)
 
     st.sidebar.subheader("Semantic (embeddings)")
-    sem_min_similarity = st.sidebar.slider("Cosine similarity threshold", 0.0, 1.0, 0.30, 0.01)
+    sem_min_similarity = st.sidebar.slider(
+        "Cosine similarity threshold", 0.0, 1.0, config.SEMANTIC_KWARGS["min_similarity"], 0.01)
 
     st.sidebar.subheader("Hybrid fusion")
     identifier_override = st.sidebar.checkbox(
-        "Exact-identifier override", value=True,
+        "Exact-identifier override", value=config.HYBRID_KWARGS["identifier_override"],
         help="Promotes a document to rank 1 when the query contains an identifier-shaped "
              "token (order #, SKU, reference code) that appears in it exactly. Measured to "
              "beat plain RRF fusion — see results/tuning_log.md.",

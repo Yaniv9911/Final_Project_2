@@ -1,0 +1,89 @@
+==============================================================================
+Q1 -- token overlap: q09 'faulty zipper' vs r010, and semantic-type average
+==============================================================================
+query: 'faulty zipper'
+r010 text: 'the zip jammed the very first time i used it.'
+tokenize(query) = ['faulty', 'zipper']
+tokenize(r010)  = ['the', 'zip', 'jammed', 'the', 'very', 'first', 'time', 'i', 'used', 'it']
+intersection    = []
+|intersection| = 0, |query tokens| = 2, ratio = 0.000
+BM25 score for r010 against this query (phantom-doc method): 0.0000
+
+-- overlap ratio for every (query, relevant_id) pair among the 10 semantic-type queries --
+  q01  vs r001: intersection=[] |0|/|4| = 0.000
+  q01  vs r018: intersection=['my'] |1|/|4| = 0.250
+  q01  vs r024: intersection=['my'] |1|/|4| = 0.250
+  q02  vs r002: intersection=[] |0|/|3| = 0.000
+  q03  vs r003: intersection=['hold', 'i'] |2|/|9| = 0.222
+  q03  vs r006: intersection=[] |0|/|9| = 0.000
+  q04  vs r004: intersection=['the', 'was'] |2|/|6| = 0.333
+  q05  vs r005: intersection=[] |0|/|5| = 0.000
+  q06  vs r007: intersection=['it'] |1|/|6| = 0.167
+  q07  vs r008: intersection=['the'] |1|/|4| = 0.250
+  q08  vs r009: intersection=[] |0|/|5| = 0.000
+  q09  vs r010: intersection=[] |0|/|2| = 0.000
+  q10  vs r038: intersection=['the'] |1|/|7| = 0.143
+
+average overlap ratio across 13 (query, relevant_id) pairs: 0.124
+
+==============================================================================
+Q2 -- near-duplicate identifiers: does the system distinguish them?
+==============================================================================
+query: 'SKU AX-7710'  (gold relevant_ids=['r014'])
+top-5 semantic results (min_similarity forced to 0.0 to show the full ranking, not what the tuned default returns):
+  r066: cosine=0.6750  text='sku ax-7701 was perfect, exactly as pictured.'
+  r014: cosine=0.6129  text='sku ax-7710 arrived in the wrong colour.'
+  r018: cosine=0.2681  text='tracking said delivered but nothing came. my reference is 9921-b.'
+  r026: cosine=0.2465  text='great value for the price, would buy again.'
+  r061: cosine=0.2283  text='the problend 900 is the best blender i have ever owned.'
+
+-- 'order #48213': r011 vs r068 --
+  r011: 'order #48213 was cancelled without any notice.'
+  r068: 'order #48231 arrived a day early, very pleased.'
+  cosine(query, r011) = 0.6397   cosine(query, r068) = 0.7293   gap = 0.0896
+  BM25(query, r011)   = 4.2851   BM25(query, r068)   = 1.5022   gap = 2.7829
+
+-- 'reference 9921-B': r018 vs r069 --
+  r018: 'tracking said delivered but nothing came. my reference is 9921-b.'
+  r069: 'reference 9912-b, all sorted within a day by customer service.'
+  cosine(query, r018) = 0.4891   cosine(query, r069) = 0.4955   gap = 0.0063
+  BM25(query, r018)   = 5.4218   BM25(query, r069)   = 2.5452   gap = 2.8766
+
+-- 'SKU AX-7710': r014 vs r066 --
+  r014: 'sku ax-7710 arrived in the wrong colour.'
+  r066: 'sku ax-7701 was perfect, exactly as pictured.'
+  cosine(query, r014) = 0.6129   cosine(query, r066) = 0.6750   gap = 0.0621
+  BM25(query, r014)   = 5.9004   BM25(query, r066)   = 2.7699   gap = 3.1305
+
+==============================================================================
+Q3 -- r016 vs r019 gap, and each against q17/q18
+==============================================================================
+r016: 'the battery lasted 3 hours, not the 30 the listing promised.'
+r019: 'the battery lasted 30 hours exactly as advertised, very happy with it.'
+q17 query: 'battery lasted 30 hours as advertised'  (gold relevant_ids=['r019'])
+q18 query: 'battery only lasted 3 hours'  (gold relevant_ids=['r016'])
+
+cosine(r016, r019) = 0.8444
+cosine(r016, q17)  = 0.7916
+cosine(r019, q17)  = 0.8685   gap = 0.0769
+cosine(r016, q18)  = 0.5156
+cosine(r019, q18)  = 0.4628   gap = 0.0529
+
+==============================================================================
+Q4 -- per-type Recall@3 and MRR: lexical, semantic, plain RRF, gated hybrid
+==============================================================================
+plain_rrf = hybrid_search(identifier_override=False, gate_lexical=False)
+gated_hybrid = hybrid_search(gate_lexical=True, gate_min_coverage=0.6, gate_max_doc_freq=5) -- the swept-best gate setting from results/tuning_log.md
+
+Recall@3 by query type:
+type              lexical       semantic      plain_rrf   gated_hybrid
+semantic             5.0%          88.3%          88.3%          88.3%
+lexical            100.0%          87.5%         100.0%         100.0%
+hybrid              50.0%          83.3%         100.0%         100.0%
+
+MRR@3 by query type:
+type              lexical       semantic      plain_rrf   gated_hybrid
+semantic            10.0%          78.3%          78.3%          78.3%
+lexical            100.0%          75.0%          93.8%          93.8%
+hybrid              50.0%          83.3%          91.7%          91.7%
+
