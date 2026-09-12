@@ -1,0 +1,79 @@
+[
+  {
+    "id": "r002",
+    "category": "product_quality",
+    "severity": "medium",
+    "refund_requested": false,
+    "summary": "The product's color faded and the seams started coming apart after just two washes."
+  },
+  {
+    "id": "r003",
+    "category": "customer_service",
+    "severity": "medium",
+    "refund_requested": false,
+    "summary": "The customer was disconnected after being on hold for forty minutes."
+  },
+  {
+    "id": "r004",
+    "category": "product_quality",
+    "severity": "low",
+    "refund_requested": false,
+    "summary": "The customer received an item that was almost grey instead of the deep navy shown in the product photo."
+  },
+  {
+    "id": "r005",
+    "category": "product_quality",
+    "severity": "medium",
+    "refund_requested": false,
+    "summary": "The customer received a shipment with a crushed box and a cracked screen."
+  },
+  {
+    "id": "r006",
+    "category": "customer_service",
+    "severity": "medium",
+    "refund_requested": false,
+    "summary": "The customer received no response to three emails sent over a two-week period."
+  },
+  {
+    "id": "r007",
+    "category": "product_quality",
+    "severity": "high",
+    "refund_requested": true,
+    "summary": "The product stopped working after four days of use and had to be returned."
+  },
+  {
+    "id": "r008",
+    "category": "product_quality",
+    "severity": "medium",
+    "refund_requested": false,
+    "summary": "The customer was unable to read the product instructions due to an unreadable language and a lack of diagrams."
+  },
+  {
+    "id": "r009",
+    "category": "billing",
+    "severity": "high",
+    "refund_requested": false,
+    "summary": "The customer was charged twice for the same order."
+  },
+  {
+    "id": "r010",
+    "category": "product_quality",
+    "severity": "medium",
+    "refund_requested": false,
+    "summary": "The zipper jammed the very first time the product was used."
+  },
+  {
+    "id": "r011",
+    "category": "customer_service",
+    "severity": "medium",
+    "refund_requested": false,
+    "summary": "Order #48213 was cancelled without any notice."
+  },
+  {
+    "id": "r012",
+    "category": "billing",
+    "severity": "medium",
+    "refund_requested": false,
+    "summary": "The customer was charged an unmentioned $12.99 restocking fee."
+  }
+]
